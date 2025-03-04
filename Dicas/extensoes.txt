@@ -1,0 +1,12 @@
+Angular Language Service
+Angular QuickSwitch
+Jest Runner
+Pretty TypeScript Errors
+SCSS Formatter
+Tailwind CSS IntelliSense
+Angular 17 Snippets - TypeScript, Html, Angular Material, ngRx, RxJS & Flex Layout
+Angular control flow snippets
+Auto Close Tag
+Auto Rename Tag
+Error Lens
+Jest Snippets
