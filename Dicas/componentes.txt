@@ -1,0 +1,1 @@
+npx nx g c header --directory=shared/components/header
