@@ -1,0 +1,5 @@
+1. Instalar WSL para usuar no Visual Code
+2. Instalar o nvm 
+3. Criando Projeto
+3.1 https://nx.dev/
+3.2 npx create-nx-workspace@19.3
