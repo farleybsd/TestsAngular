@@ -1,0 +1,4 @@
+{
+  "jest.autoRun": "watch",
+  "jest.testExplorer.enabled": true
+}
