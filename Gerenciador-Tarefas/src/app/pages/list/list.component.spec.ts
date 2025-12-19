@@ -2,12 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListComponent } from './list.component';
 import { By } from '@angular/platform-browser';
 import { TasksService } from 'src/app/shared/services/tasks/tasks.service';
-import { Observable, of } from 'rxjs';
-import { Task } from 'src/app/shared/interfaces/task.interface';
-
-class FakeTaskService implements TasksService {
-  getAll = jest.fn();
-}
+import { of } from 'rxjs';
+import { FakeTaskService } from 'src/testing/mocks/fake-tasks.service';
 
 describe('ListComponent', () => {
   let component: ListComponent;
