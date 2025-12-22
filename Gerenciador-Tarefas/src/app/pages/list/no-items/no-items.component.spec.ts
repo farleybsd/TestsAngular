@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NoItemsComponent } from './no-items.component';
+import { By } from '@angular/platform-browser';
 
 describe('NoItemsComponent', () => {
-  let component: NoItemsComponent;
   let fixture: ComponentFixture<NoItemsComponent>;
 
   beforeEach(async () => {
@@ -13,11 +13,16 @@ describe('NoItemsComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(NoItemsComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Deve Renderizar Uma Mensagem', () => {
+   
+    const messageDebugEl = fixture.debugElement.query(By.css('[data-test="no-items-message"]'));
+    const messageTextContent =messageDebugEl.nativeElement.textContent;
+
+    expect(messageTextContent).toBe('Nenhuma tarefa encontrada.');
+
   });
+  
 });
