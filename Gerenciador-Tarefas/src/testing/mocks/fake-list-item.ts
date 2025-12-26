@@ -1,4 +1,4 @@
-import { Component, input, InputSignal } from "@angular/core";
+import { Component, input, InputSignal, output } from "@angular/core";
 import { ListItemComponent } from "src/app/pages/list/list-item/list-item.component";
 import { Task } from "src/app/shared/interfaces/task.interface";
 
@@ -9,6 +9,10 @@ template: ''
 })
 
 export class FakeListItemComponent implements ListItemComponent {
+    complete = output<Task>();
+
+    onComplete(): void {}
+
     task: InputSignal<Task> = input.required<Task>();
 
 }
