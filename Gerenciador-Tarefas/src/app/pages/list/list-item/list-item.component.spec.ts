@@ -34,6 +34,7 @@ describe('ListItemComponent', () => {
   it('Deve Renderizar O Titulo Da Tarefa', async() => {
 
     const fakeTask: Task = {
+      id: '1',
       title: 'Nome da Tarefa',
       completed: false,
     };
@@ -50,6 +51,7 @@ describe('ListItemComponent', () => {
 
   it('Deve Emitir Um Evento Ao Completar A Tarefa', async () => {
     const fakeTask: Task = {
+      id: '1',
       title: 'Nome da Tarefa',
       completed: false,
     };

@@ -108,9 +108,15 @@ describe('ListComponent', () => {
 
       const fakeTask: Task = { id: '1', title: 'Item 1', completed: false };
       const tasks: Task[] =[fakeTask];
+      
       (taskService.getAll as jest.Mock).mockReturnValue(of(tasks));
 
+      const completedTask: Task = { ...fakeTask, completed: true };
+      
+      (taskService.patch as jest.Mock).mockReturnValue(of(completedTask));
+
       fixture.detectChanges();
+
       expect(testHelper.QueryByTestId('Completed-list-item')).toBeNull();
 
       const todoItemDebugEl = testHelper.QueryByTestId('todo-list-item');
@@ -119,6 +125,8 @@ describe('ListComponent', () => {
 
       expect(taskService.patch).toHaveBeenCalledWith(fakeTask.id, {completed: true});
 
+      fixture.detectChanges();
+      
       expect(testHelper.QueryByTestId('Completed-list-item')).toBeTruthy();
      
     });

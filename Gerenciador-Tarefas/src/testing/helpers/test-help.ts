@@ -6,7 +6,7 @@ export class TestHelper<T> {
 
   QueryByTestId(testId: string) {
     return this.fixture.debugElement.query(
-      By.css(`[data-testeid="${testId}"]`)
+      By.css(`[data-testid="${testId}"]`)
     );
   }
 
