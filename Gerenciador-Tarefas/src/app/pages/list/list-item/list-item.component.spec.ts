@@ -43,7 +43,6 @@ describe('ListItemComponent', () => {
 
     fixture.detectChanges();
 
-    const taskTitleDebugEl = testHelper.QueryByTestId('list-item-task-title');
     const text = testHelper.getTextContextByTestId('list-item-task-title');
 
     expect(text).toContain(fakeTask.title);

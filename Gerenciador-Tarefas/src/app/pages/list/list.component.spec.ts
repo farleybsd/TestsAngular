@@ -34,7 +34,10 @@ describe('ListComponent', () => {
     });
 
     await TestBed.compileComponents();
+
+    fixture = TestBed.createComponent(ListComponent);
     testHelper = new TestHelper(fixture);
+    component = fixture.componentInstance;
     taskService = TestBed.inject(TasksService);
   });
 

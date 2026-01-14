@@ -1,9 +1,10 @@
 <div class="card bg-neutral text-neutral-content">
     <div class="card-body items-center text-center">
-        <h2 data-testeid="list-item-task-title" class="card-title">{{ task().title }}</h2>
+        <h2 data-testid="list-item-task-title" class="card-title">{{ task().title }}</h2>
         <div class=" w-full card-actions justify-end">
-            <button class="btn btn-primary btn-xs" data-testeid="list-item-complete-action"
-                (click)="onComplete()">Completar</button>
+            <button class="btn btn-primary btn-xs" data-testid="list-item-complete-action" (click)="onComplete()">
+                Completar
+            </button>
         </div>
     </div>
 

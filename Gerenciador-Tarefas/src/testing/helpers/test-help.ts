@@ -11,7 +11,7 @@ export class TestHelper<T> {
   }
 
   getTextContextByTestId(testId: string) {
-    return this.QueryByTestId(testId).nativeElement.textContent;
+    return this.QueryByTestId(testId).nativeElement.textContent.trim();
   }
   
 }
