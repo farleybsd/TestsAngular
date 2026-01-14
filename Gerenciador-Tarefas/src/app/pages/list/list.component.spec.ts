@@ -6,12 +6,13 @@ import { of } from 'rxjs';
 import { FakeTaskService } from 'src/testing/mocks/fake-tasks.service';
 import { ListItemComponent } from './list-item/list-item.component';
 import { FakeListItemComponent } from 'src/testing/mocks/fake-list-item';
-
+import { Task } from 'src/app/shared/interfaces/task.interface';
+import { TestHelper } from 'src/testing/helpers/test-help';
 describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
   let taskService: TasksService;
-
+  let testHelper: TestHelper<ListComponent>;
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [ListComponent],
@@ -33,7 +34,7 @@ describe('ListComponent', () => {
     });
 
     await TestBed.compileComponents();
-
+    testHelper = new TestHelper(fixture);
     taskService = TestBed.inject(TasksService);
   });
 
@@ -64,9 +65,18 @@ describe('ListComponent', () => {
     expect(todoItems.length).toBe(3);
 
     //Passando os dados corretos para o input do componente filho
-    expect(todoItems[0].componentInstance.task()).toEqual({ title: 'Item 1', completed: false });
-    expect(todoItems[1].componentInstance.task()).toEqual({ title: 'Item 2', completed: false });
-    expect(todoItems[2].componentInstance.task()).toEqual({ title: 'Item 3', completed: false });
+    expect(todoItems[0].componentInstance.task()).toEqual({
+      title: 'Item 1',
+      completed: false,
+    });
+    expect(todoItems[1].componentInstance.task()).toEqual({
+      title: 'Item 2',
+      completed: false,
+    });
+    expect(todoItems[2].componentInstance.task()).toEqual({
+      title: 'Item 3',
+      completed: false,
+    });
 
     const CompletedtodoSection = fixture.debugElement.query(
       By.css('[data-testid="Completed-list"]')
@@ -79,8 +89,38 @@ describe('ListComponent', () => {
     expect(CompletedItems.length).toBe(3);
 
     //Passando os dados corretos para o input do componente filho
-    expect(CompletedItems[0].componentInstance.task()).toEqual({ title: 'Item 4', completed: true });
-    expect(CompletedItems[1].componentInstance.task()).toEqual({ title: 'Item 5', completed: true });
-    expect(CompletedItems[2].componentInstance.task()).toEqual({ title: 'Item 6', completed: true });
+    expect(CompletedItems[0].componentInstance.task()).toEqual({
+      title: 'Item 4',
+      completed: true,
+    });
+    expect(CompletedItems[1].componentInstance.task()).toEqual({
+      title: 'Item 5',
+      completed: true,
+    });
+    expect(CompletedItems[2].componentInstance.task()).toEqual({
+      title: 'Item 6',
+      completed: true,
+    });
+  });
+
+  describe('Quando A Tarefa Esta Pendente', () => {
+    it('Deve Completar Uma Tarefa', () => {
+
+      const fakeTask: Task = { id: '1', title: 'Item 1', completed: false };
+      const tasks: Task[] =[fakeTask];
+      (taskService.getAll as jest.Mock).mockReturnValue(of(tasks));
+
+      fixture.detectChanges();
+      expect(testHelper.QueryByTestId('Completed-list-item')).toBeNull();
+
+      const todoItemDebugEl = testHelper.QueryByTestId('todo-list-item');
+
+      (todoItemDebugEl.componentInstance as FakeListItemComponent).complete.emit(fakeTask);
+
+      expect(taskService.patch).toHaveBeenCalledWith(fakeTask.id, {completed: true});
+
+      expect(testHelper.QueryByTestId('Completed-list-item')).toBeTruthy();
+     
+    });
   });
 });
