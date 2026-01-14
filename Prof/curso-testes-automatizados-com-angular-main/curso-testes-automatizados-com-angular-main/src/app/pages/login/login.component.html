@@ -1,0 +1,45 @@
+<section class="flex justify-center">
+    <form
+      class="space-y-4"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      data-testid="login-form"
+    >
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Email</span>
+        </div>
+        <input
+          type="text"
+          placeholder="Digite o email do usuário"
+          class="input input-bordered w-full max-w-xs"
+          formControlName="email"
+          data-testid="login-email"
+        />
+      </label>
+
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Senha</span>
+        </div>
+        <input
+          type="password"
+          placeholder="Digite a senha do usuário"
+          class="input input-bordered w-full max-w-xs"
+          formControlName="password"
+          data-testid="login-password"
+        />
+      </label>
+      
+      @if (showAuthFailedMessage()) {
+        <section class="text-error" data-testid="login-auth-failed">
+          Usuário ou senha estão inválidos
+        </section>
+      }
+
+      <section class="flex justify-end">
+        <button appButtonXs="primary" type="submit" [disabled]="form.invalid">Autenticar</button>
+      </section>
+    </form>
+  </section>
+  
